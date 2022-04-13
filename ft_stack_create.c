@@ -6,7 +6,7 @@
 /*   By: agrenon <agrenon@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:03:05 by agrenon           #+#    #+#             */
-/*   Updated: 2022/03/30 16:51:08 by agrenon          ###   ########.fr       */
+/*   Updated: 2022/04/09 12:04:03 by agrenon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,27 @@ bool	ft_exit(t_data_piles *data, char *nombre, int numb)
 	return (true);
 }
 
-bool	ft_error_check(t_data_piles *data, t_value *t, char *arg, t_value n)
+bool	ft_err_ch(t_data_piles *data, t_value *t, char *arg, t_value n)
 {
 	int		i;
 
 	i = 0;
+	(void) data;
 	while (arg[i])
 	{
 		if (arg[0] == '-' && i == 0)
 			i = i + 0;
 		else if (arg[i] < 48 || arg[i] > 57)
-			return (ft_exit(data, arg, 0));
+			return (true);
 		i++;
 	}
 	i = 0;
-	if (n > SHRT_MAX || n < SHRT_MIN)
-		return (ft_exit(data, arg, n));
+	if (n > INT_MAX || n < INT_MIN)
+		return (true);
 	while (t[i])
 	{
 		if (n == t[i])
-			return (ft_exit(data, NULL, n));
+			return (true);
 		i++;
 	}
 	t[i] = n;
@@ -81,7 +82,9 @@ void	ft_generate_data(t_data_piles *data, int argc)
 			data->min = begin->value;
 		begin = begin->next;
 	}
-	data->range = ((data->max - data->min) / (argc - 1)) * coeff;
+	if (argc <= 1)
+		argc = 2;
+	ft_range_create(data, argc, coeff);
 	if (!data->range)
 		data->range = coeff;
 	data->range_low = data->min - 1;
@@ -96,10 +99,11 @@ t_data_piles	*ft_set_data(int argc)
 
 	temp = malloc(sizeof(t_data_piles));
 	temp->op_count = 0;
-	temp->len_a = argc - 1;
+	temp->len_a = argc;
 	temp->len_b = 0;
 	temp->shuffle = 0;
-	temp->shuffle_max = argc - 1;
+	temp->shuffle_max = argc;
+	temp->arg_c = argc;
 	return (temp);
 }
 
@@ -112,13 +116,14 @@ t_data_piles	*ft_stack_create(char **argv, int argc)
 	bool			err;
 
 	err = false;
+	argc = ft_tab_len(argv) - argc;
 	tab = malloc(sizeof(t_value) * argc);
 	data = ft_set_data(argc);
-	i = argc - 1;
+	i = argc;
 	while (i)
 	{
 		plat = ft_cuire_assiette(data, argv[i]);
-		if (ft_error_check(data, tab, argv[i], plat->value))
+		if (ft_err_ch(data, tab, argv[i], plat->value))
 			err = true;
 		i--;
 	}

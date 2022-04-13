@@ -6,22 +6,26 @@
 /*   By: agrenon <agrenon@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:35:04 by agrenon           #+#    #+#             */
-/*   Updated: 2022/03/25 18:07:50 by agrenon          ###   ########.fr       */
+/*   Updated: 2022/04/07 13:20:29 by agrenon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_push.h"
 
-void	ft_print_all_lst(t_assiette *porcelaine)
+void	ft_range_create(t_data_piles *data, int argc, int coeff)
 {
-	t_assiette	*begin;
+	int	range;
 
-	begin = porcelaine;
-	while (begin)
+	range = data->max - data->min;
+	if (argc < 505 && argc > 495)
 	{
-		printf("|  %ld  |   Adress: %p Next: %p Prev: %p\n", begin->value,begin, begin->next, begin->previous);
-		begin = begin->next;
+		if (range > 650 && range < 1075)
+			data->range = 45;
+		else
+			data->range = (range / (argc - 1)) * coeff;
 	}
+	else
+		data->range = (range / (argc - 1)) * coeff;
 	return ;
 }
 

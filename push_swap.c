@@ -1,39 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agrenon <agrenon@student.42quebec.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/02 16:59:15 by agrenon           #+#    #+#             */
+/*   Updated: 2022/04/09 14:37:47 by agrenon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lib_push.h" 
 
-// PRINT FUNCTIONS
-// printf("Shuffle max: %ld\n Shuffle: %ld\n", data->shuffle_max, da    ta->shuffle);
- //printf("data->range : %ld argc: %d\n", data->range, argc - 1);
- //printf("From_a : %ld from_b: %ld\n", data->from_a, data->from_b);
- //printf("data->range : %ld argc: %d\n", data->range, argc - 1);
- //printf("Min: %ld\n Max: %ld\n", data->min, data->max);
+t_data_piles	*ft_stack_split(char **argv)
+{
+	int				i;
+	char			**tab;
+	t_data_piles	*data;
 
+	tab = ft_split(argv[1], ' ');
+	data = ft_other_stack(tab, 0);
+	i = 0;
+	if (tab)
+	{
+		while (tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
+	}
+	return (data);
+}
 
 int	main(int argc, char **argv)
 {
-	t_data_piles *data;
+	t_data_piles	*data;
 
-	data = ft_stack_create(argv, argc);
-	if (!data)
+	if (argc <= 1)
 		return (0);
-//	printf("\n FULL STACK BEGIN A \n");
-//	ft_print_all_lst(data->top_a);
-	//printf("\n OPERATIONS: \n");
-	//if (argc > 2)
-	//ft_algo_a(data);
-
-	ft_thinking(data);
-	
-/*	if (argc < 30)		
+	if (argc == 2)
+		data = ft_stack_split(argv);
+	else
+		data = ft_stack_create(argv, 1);
+	if (!data)
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	else if (data->arg_c == 3)
+		ft_only_three(data);
+	else if (data->arg_c < 30)
 		ft_algo_a(data);
-	else	
+	else
 		ft_algo_master(data);
-*/
-	printf("\n-FIN FIN --- Pile a \n");
-	ft_print_all_lst(data->top_a);
-	printf("\nNOMBRE OPÉRATIONS: %ld\n  \n", data->op_count);
-	printf("\n Vrai : %d\n  \n", ft_is_align(data->top_a, false));
-	
-
-	ft_destroy_stacks(data); //free
-	return(0);
+	ft_destroy_stacks(data);
+	return (0);
 }

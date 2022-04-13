@@ -6,7 +6,7 @@
 /*   By: agrenon <agrenon@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:14:56 by agrenon           #+#    #+#             */
-/*   Updated: 2022/03/31 13:08:16 by agrenon          ###   ########.fr       */
+/*   Updated: 2022/04/09 16:12:28 by agrenon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-typedef long	t_value;
+typedef long long	t_value;
 
 typedef struct node
 {
@@ -33,6 +33,7 @@ typedef struct stacks
 {
 	t_assiette	*top_a;
 	t_assiette	*top_b;	
+	int			arg_c;
 	t_value		op_count;
 	t_value		min;
 	t_value		max;
@@ -55,11 +56,15 @@ typedef struct stacks
 	bool		t_turn;
 }	t_data_piles;
 
+int				ft_tab_len(char **argv);
 t_assiette		*ft_cuire_assiette(t_data_piles *data, char *arg);
 t_data_piles	*ft_set_data(int argc);
 t_data_piles	*ft_stack_create(char **argv, int argc);
+t_data_piles	*ft_other_stack(char **argv, int argc);
 void			ft_set_info(t_data_piles *data);
-void			ft_print_all_lst(t_assiette *porcelaine);
+void			ft_generate_data(t_data_piles *data, int argc);
+void			ft_range_create(t_data_piles *data, int argc, int coeff);
+bool			ft_err_ch(t_data_piles *data, t_value *t, char *arg, t_value n);
 void			ft_destroy_stacks(t_data_piles *data);
 void			ft_push(t_data_piles *data, char c);
 t_assiette		*ft_swap(t_assiette *porcelaine);
@@ -75,6 +80,6 @@ void			ft_evrday_im_shuffling(t_data_piles *data);
 void			ft_algo_b(t_data_piles *data);
 void			ft_algo_bswitch(t_data_piles *data);
 void			ft_algo_master(t_data_piles *data);
-void			ft_thinking(t_data_piles *data);
+void			ft_only_three(t_data_piles *data);
 bool			ft_is_align(t_assiette *data, bool reverse);
 #endif 

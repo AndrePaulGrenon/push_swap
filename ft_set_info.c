@@ -6,11 +6,21 @@
 /*   By: agrenon <agrenon@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:27:29 by agrenon           #+#    #+#             */
-/*   Updated: 2022/03/25 17:49:01 by agrenon          ###   ########.fr       */
+/*   Updated: 2022/04/06 18:06:10 by agrenon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_push.h"
+
+int	ft_tab_len(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i);
+}
 
 void	ft_set_range(t_data_piles *data)
 {

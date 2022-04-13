@@ -25,6 +25,7 @@ SRCS_C	= push_swap.c \
 		  ft_push.c \
 		  ft_algo_support.c \
 		  ft_thinking.c \
+		  ft_other_stack.c \
 
 #Place bonus files:
 SRCS_BONUS_C	=   \

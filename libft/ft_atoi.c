@@ -6,17 +6,17 @@
 /*   By: agrenon <agrenon@student.42quebec.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:02:59 by agrenon           #+#    #+#             */
-/*   Updated: 2022/03/25 17:25:43 by agrenon          ###   ########.fr       */
+/*   Updated: 2022/04/06 17:49:22 by agrenon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	long long	i;
-	long		res;
-	long		neg;
+	long long	res;
+	long long	neg;
 
 	neg = 1;
 	res = 0;
