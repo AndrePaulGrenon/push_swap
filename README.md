@@ -1,6 +1,6 @@
 Le projet consiste en la création d'un algorythme de tri. 
 
-Cet algorythme est appliqué sur structure de donnée (pile/stack). Il faut donc également aplliqué une gestion de la pile et des opérations faites sur celle-ci. 
+Cet algorythme est appliqué sur structure de donnée via l'utilisation de piles/stacks. Il faut donc également aplliqué une gestion de la pile et des opérations faites sur celles-ci. 
 
 Le type d'algorythme utilisé dans ce projet est radix sort, ainsi que d'autres algorythmes fait maisons du type quick sort/divide and conquer . 
 
