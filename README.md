@@ -1,4 +1,8 @@
-Le projet consiste en la création d'un algorythme de tri. 
+PUSH_SWAP
+
+PROJET DU TROISIÈME CERCLE DE L'ÉCOLE 42
+
+Le projet consiste en la création d'un algorythme de tri.
 
 Cet algorythme est appliqué sur structure de donnée via l'utilisation de piles/stacks. Il faut donc également aplliqué une gestion de la pile et des opérations faites sur celles-ci. 
 
